@@ -1,0 +1,15 @@
+{
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "phalcon/incubator-test": "^v1.0.0-alpha.1",
+    "phalcon/ide-stubs": "^v4.1.0"
+  }
+}

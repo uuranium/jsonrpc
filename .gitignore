@@ -1,0 +1,6 @@
+/logs
+/.idea
+/activity/.phalcon
+cache
+/activity/vendor
+/lending/vendor

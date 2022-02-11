@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  landing-nginx:
+    image: nginx:latest
+    container_name: landing-nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./landing:/var/www/app
+    ports:
+      - "80:80"
+
+  landing:
+    build: .
+    container_name: landing
+    volumes:
+      - ./landing:/var/www/app
+
+  activity-nginx:
+    image: nginx:latest
+    container_name: activity-nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./activity:/var/www/app
+
+  activity:
+    build: .
+    container_name: activity
+    volumes:
+      - ./activity:/var/www/app
+
+  postgres:
+    image: postgres
+    container_name: activity-postgres
+    environment:
+      POSTGRES_USER: activity_user
+      POSTGRES_PASSWORD: G4gf355jk8_rdsf
+      POSTGRES_DB: activity_db
+    ports:
+      - "5432:5432"

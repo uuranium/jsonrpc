@@ -1,0 +1,42 @@
+<h1 class="display-3 text-center mt-3 mb-2">История активности</h1>
+
+<?php if (!empty($this->view->data)): ?>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">URL</th>
+            <th scope="col">Количество визитов</th>
+            <th scope="col">Последнее посещение</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->view->data['items'] as $row): ?>
+        <tr>
+            <th><?= $row['url'] ?></th>
+            <td><?= $row['counter'] ?></td>
+            <td><?= date('d.m.Y H:i:s', strtotime($row['date'])) ?></td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item <?= $this->view->data['current'] === 1 ? 'disabled' : '' ?>">
+                <a class="page-link" href="/admin/activity/<?= $this->view->data['previous']; ?>">Previous</a>
+            </li>
+            <?php foreach (range(1, $this->view->data['last']) as $page) : ?>
+                <li class="page-item <?= $this->view->data['current'] === $page ? 'active' : '' ?>">
+                    <a class="page-link" href="/admin/activity/<?= $page ?>"><?= $page ?></a>
+                </li>
+            <?php endforeach; ?>
+            <li class="page-item <?= $this->view->data['current'] === $this->view->data['last'] ? 'disabled' : '' ?>">
+                <a class="page-link" href="/admin/activity/<?= $this->view->data['next']; ?>">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div>
+        <span><?php echo "Page {$this->view->data['current']}  of {$this->view->data['last']}"; ?></span>
+    </div>
+<?php endif; ?>
